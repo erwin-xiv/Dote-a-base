@@ -7,3 +7,5 @@ Done all your dotes after arriving somewhere? Use the Reset List button to clear
 
 To download, go into Dalamud > Settings > Experimental > scroll down to "Custom Plugin Repositories" and add an entry for https://raw.githubusercontent.com/TenaciousDaveBlack/Dote-a-base/main/XIVPlugins/repo.json
 You should then be able to find Dote-a-base in available plugins.
+
+AI was used for some initial code, though almost all of this has been removed or heavily altered.

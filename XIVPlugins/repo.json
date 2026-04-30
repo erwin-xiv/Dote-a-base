@@ -9,8 +9,8 @@
       "plugin"
     ],
     "InternalName": "Dote-a-base",
-    "AssemblyVersion": "1.0.0.2",
-    "TestingAssemblyVersion": "1.0.0.2",
+    "AssemblyVersion": "1.15.0.0",
+    "TestingAssemblyVersion": "1.15.0.0",
     "RepoUrl": "https://github.com/TenaciousDaveBlack/Dote-a-base",
     "ApplicableVersion": "any",
     "DalamudApiLevel": 15,

@@ -9,18 +9,18 @@
       "plugin"
     ],
     "InternalName": "Dote-a-base",
-    "AssemblyVersion": "1.0.0.1",
-    "TestingAssemblyVersion": "1.0.0.1",
+    "AssemblyVersion": "1.0.0.2",
+    "TestingAssemblyVersion": "1.0.0.2",
     "RepoUrl": "https://github.com/TenaciousDaveBlack/Dote-a-base",
     "ApplicableVersion": "any",
-    "DalamudApiLevel": 14,
+    "DalamudApiLevel": 15,
     "IsHide": "False",
     "IsTestingExclusive": "False",
     "DownloadCount": 67,
     "LastUpdate": 1776544260,
-    "DownloadLinkInstall": "https://github.com/TenaciousDaveBlack/Dote-a-base/blob/main/XIVPlugins/Zip/1.0.0.1.zip?raw=true",
-    "DownloadLinkUpdate": "https://github.com/TenaciousDaveBlack/Dote-a-base/blob/main/XIVPlugins/Zip/1.0.0.1.zip?raw=true",
-    "DownloadLinkTesting": "https://github.com/TenaciousDaveBlack/Dote-a-base/blob/main/XIVPlugins/Zip/1.0.0.1.zip?raw=true",
+    "DownloadLinkInstall": "https://github.com/TenaciousDaveBlack/Dote-a-base/blob/main/XIVPlugins/Zip/1.0.0.2.zip?raw=true",
+    "DownloadLinkUpdate": "https://github.com/TenaciousDaveBlack/Dote-a-base/blob/main/XIVPlugins/Zip/1.0.0.2.zip?raw=true",
+    "DownloadLinkTesting": "https://github.com/TenaciousDaveBlack/Dote-a-base/blob/main/XIVPlugins/Zip/1.0.0.2.zip?raw=true",
     "IconUrl": "https://raw.githubusercontent.com/TenaciousDaveBlack/Dote-a-base/main/XIVPlugins/Icon.png"
   }
 ]

@@ -14,5 +14,17 @@ public class Configuration : IPluginConfiguration
     /// <summary>Maximum distance (in yalms) to include a player in the nearby list.</summary>
     public float ScanDistance { get; set; } = 50.0f;
 
+    /// <summary>Whether to show players with no dotes in the list.</summary>
+    public bool ShowNone { get; set; } = false;
+
+    /// <summary>Whether to show mutual dotes in the list.</summary>
+    public bool ShowMutual { get; set; } = true;
+
+    /// <summary>Whether to show dotes from others in the list.</summary>
+    public bool ShowDotedThem { get; set; } = true;
+
+    /// <summary>Whether to show dotes to others in the list.</summary>
+    public bool ShowDotedMe { get; set; } = true;
+
     public void Save() => Plugin.PluginInterface.SavePluginConfig(this);
 }

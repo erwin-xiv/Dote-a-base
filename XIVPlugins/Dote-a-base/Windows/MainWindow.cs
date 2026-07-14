@@ -35,7 +35,7 @@ public sealed class MainWindow : Window
 
     public override void Draw()
     {
-        var localPlayer = Plugin.ClientState.LocalPlayer;
+        var localPlayer = Plugin.ObjectTable.LocalPlayer;
         if (localPlayer == null)
         {
             ImGui.TextUnformatted("Waiting for game world…");

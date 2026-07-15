@@ -1,11 +1,8 @@
-using System.Numerics;
-using Dalamud.Game.ClientState.Objects.Types;
+using Dalamud.Bindings.ImGui;
 using Dalamud.Game.ClientState.Objects.SubKinds;
 using Dalamud.Interface.Windowing;
-using DoteTracker;
-using Dalamud.Bindings.ImGui;
 using System.Linq;
-using Dalamud.Plugin.Services;
+using System.Numerics;
 
 namespace DoteTracker.Windows;
 
@@ -26,7 +23,7 @@ public sealed class MainWindow : Window
         this.plugin = plugin;
         SizeConstraints = new WindowSizeConstraints
         {
-            MinimumSize = new Vector2(325, 260),
+            MinimumSize = new Vector2(425, 260),
             MaximumSize = new Vector2(float.MaxValue, float.MaxValue)
         };
     }
@@ -35,7 +32,7 @@ public sealed class MainWindow : Window
 
     public override void Draw()
     {
-        var localPlayer = Plugin.ClientState.LocalPlayer;
+        var localPlayer = Plugin.ObjectTable.LocalPlayer;
         if (localPlayer == null)
         {
             ImGui.TextUnformatted("Waiting for game world…");
@@ -59,7 +56,7 @@ public sealed class MainWindow : Window
             plugin.DoteState.Clear();
 
         ImGui.SameLine();
-        ImGui.SetNextItemWidth(160);
+        ImGui.SetNextItemWidth(260);
         var dist = plugin.Configuration.ScanDistance;
         if (ImGui.SliderFloat("Scan Range", ref dist, 5.0f, 100.0f, "%.0f yalms"))
         {
@@ -68,16 +65,49 @@ public sealed class MainWindow : Window
         }
     }
 
-    private static void DrawLegend()
+    private void DrawLegend()
     {
+        var showMutual = plugin.Configuration.ShowMutual;
+        var showDotedThem = plugin.Configuration.ShowDotedThem;
+        var showDotedMe = plugin.Configuration.ShowDotedMe;
+        var showNone = plugin.Configuration.ShowNone;
+
         ImGui.Spacing();
-        ImGui.TextColored(ColMutual,      "■ It's mutual");
+        ImGui.PushStyleColor(ImGuiCol.Text, ColMutual);
+        //if (ImGui.Checkbox($"■ It's mutual", ref showMutual))
+        if (ImGui.Checkbox($"It's mutual", ref showMutual))
+        {
+            plugin.Configuration.ShowMutual = showMutual;
+            plugin.Configuration.Save();
+        }
+        ImGui.PopStyleColor();
         ImGui.SameLine();
-        ImGui.TextColored(ColDotedThem,   "■ I Doted them");
+        ImGui.PushStyleColor(ImGuiCol.Text, ColDotedThem);
+        //if (ImGui.Checkbox($"■ I Doted them", ref showDotedThem))
+        if (ImGui.Checkbox($"I Doted them", ref showDotedThem))
+        {
+            plugin.Configuration.ShowDotedThem = showDotedThem;
+            plugin.Configuration.Save();
+        }
+        ImGui.PopStyleColor();
         ImGui.SameLine();
-        ImGui.TextColored(ColTheyDotedMe, "■ They Doted me");
-        /*ImGui.SameLine();
-        ImGui.TextColored(ColNone,        "■ None");*/
+        ImGui.PushStyleColor(ImGuiCol.Text, ColTheyDotedMe);
+        //if (ImGui.Checkbox($"■ They Doted me", ref showDotedMe))
+        if (ImGui.Checkbox($"They Doted me", ref showDotedMe))
+        {
+            plugin.Configuration.ShowDotedMe = showDotedMe;
+            plugin.Configuration.Save();
+        }
+        ImGui.PopStyleColor();
+        ImGui.SameLine();
+        ImGui.PushStyleColor(ImGuiCol.Text, ColNone);
+        //if (ImGui.Checkbox($"■ None", ref showNone))
+        if (ImGui.Checkbox($"None", ref showNone))
+        {
+            plugin.Configuration.ShowNone = showNone;
+            plugin.Configuration.Save();
+        }
+        ImGui.PopStyleColor();
         ImGui.Spacing();
     }
 
@@ -113,6 +143,14 @@ public sealed class MainWindow : Window
 
             var normalizedName = DoteTrackerState.NormalizeName(player.Name.TextValue);
             plugin.DoteState.DoteRoster.TryGetValue(normalizedName, out var state);
+
+            if ((state == DoteState.None && !plugin.Configuration.ShowNone) ||
+                (state == DoteState.Mutual && !plugin.Configuration.ShowMutual) ||
+                (state == DoteState.DotedThem && !plugin.Configuration.ShowDotedThem) ||
+                (state == DoteState.TheyDotedMe && !plugin.Configuration.ShowDotedMe))
+            {
+                continue;
+            }
 
             ImGui.TableNextRow();
 

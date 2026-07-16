@@ -8,5 +8,6 @@
     "dote",
     "plugin"
   ],
+  "IconUrl": "https://raw.githubusercontent.com/TenaciousDaveBlack/Dote-a-base/main/XIVPlugins/Icon.png",
   "Apiversion": 15
 }

@@ -3,6 +3,7 @@
   "Name": "Dote-a-base",
   "Punchline": "Easily see who you have doted and who has doted you.",
   "Description": "Easily see who you have doted and who has doted you.",
+  "InternalName": "DotaAbase",
   "Tags": [
     "dote",
     "plugin"

@@ -175,7 +175,11 @@ public sealed class MainWindow : Window
             //ImGui.TableSetColumnIndex(2);
             //if (ImGui.Button($"Dote##{player.GameObjectId}"))
             if (ImGui.Button($" ♥ ##{player.GameObjectId}"))
+            {
+                if (Plugin.TargetManager.Target != player)
+                    Plugin.TargetManager.Target = player;
                 EmoteUtils.SendDote(146);
+            }
         }
 
         ImGui.EndTable();

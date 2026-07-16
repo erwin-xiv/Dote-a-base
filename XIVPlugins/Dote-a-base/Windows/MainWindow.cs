@@ -1,6 +1,7 @@
 using Dalamud.Bindings.ImGui;
 using Dalamud.Game.ClientState.Objects.SubKinds;
 using Dalamud.Interface.Windowing;
+using DoteTracker.Utils;
 using System.Linq;
 using System.Numerics;
 
@@ -129,7 +130,8 @@ public sealed class MainWindow : Window
         ImGui.TableSetupScrollFreeze(0, 1);
         ImGui.TableSetupColumn("Player Name", ImGuiTableColumnFlags.WidthStretch | ImGuiTableColumnFlags.NoHide);
         //ImGui.TableSetupColumn("Status",      ImGuiTableColumnFlags.WidthFixed, 100);
-        ImGui.TableSetupColumn(" ",      ImGuiTableColumnFlags.WidthFixed,  50);
+        ImGui.TableSetupColumn(" ",           ImGuiTableColumnFlags.WidthFixed,  100);
+        //ImGui.TableSetupColumn(" ",           ImGuiTableColumnFlags.WidthFixed, 50);
         ImGui.TableHeadersRow();
 
         foreach (var obj in Plugin.ObjectTable.OrderBy(o => o.Name.TextValue))
@@ -166,13 +168,22 @@ public sealed class MainWindow : Window
 
             // Target button — unique ID via GameObjectId
             ImGui.TableSetColumnIndex(1);
-            if (ImGui.Button($"Target##{player.GameObjectId}"))
+            if (ImGui.Button($" Target ##{player.GameObjectId}"))
                 Plugin.TargetManager.Target = player;
+
+            ImGui.SameLine();
+            //ImGui.TableSetColumnIndex(2);
+            //if (ImGui.Button($"Dote##{player.GameObjectId}"))
+            if (ImGui.Button($" ♥ ##{player.GameObjectId}"))
+            {
+                if (Plugin.TargetManager.Target != player)
+                    Plugin.TargetManager.Target = player;
+                EmoteUtils.SendDote(146);
+            }
         }
 
         ImGui.EndTable();
     }
-
     
     private static Vector4 StateColor(DoteState state) => state switch
     {

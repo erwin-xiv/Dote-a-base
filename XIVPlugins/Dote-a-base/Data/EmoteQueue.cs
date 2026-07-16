@@ -22,6 +22,8 @@ namespace EmoteLog.Data
 
         private void OnEmote(IPlayerCharacter playerCharacter, ushort emoteId, bool IsIncoming)
         {
+            //Plugin.PluginLog.Information($"Player {playerCharacter.Name} used emote {emoteId} ({(IsIncoming ? "incoming" : "outgoing")})");
+
             if (emoteId == 146 || emoteId == 147)
             {
                 if (this.Log.Count > 0)
@@ -45,7 +47,7 @@ namespace EmoteLog.Data
                     collapsedEmoteEntry.EmoteEntry = emoteEntry;
                 }
 
-
+                
 
                 if (IsIncoming)
                 {
